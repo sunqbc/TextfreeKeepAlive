@@ -81,9 +81,9 @@ class Textnow:
     except:
       pass
 
-    if driver.current_url == "https://www.textnow.com/messaging" ：
+    if driver.current_url == "https://www.textnow.com/messaging" :
        print(u'登录成功')
-    else：
+    else:
        print(u'登录失败')
        sys.exit()
     # 隐性等待,最长等待30秒
