@@ -78,12 +78,14 @@ class Textnow:
     try:
       #WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, "//input[@class='form_button']")))
       WebDriverWait(driver, 3).until(EC.visibility_of_element_located((By.XPATH, "//button[@id='newText']")))
+      new_text_btn = driver.find_element_by_xpath("//button[@id='newText']")
+      new_text_btn.click()
     except:
       pass
 
     print(u'登录成功')
     # 隐性等待,最长等待30秒
-    #driver.implicitly_wait(30)
+    driver.implicitly_wait(30)
 
 
     #toast = driver.find_element_by_css_selector("#recent-header .toast-container")
@@ -105,7 +107,7 @@ class Textnow:
         print (u'开始给%s发短信' % phone)
         
         #点击 新建短信按钮
-        new_text_btn = driver.find_element_by_xpath("//button[@id='newText']")
+        new_text_btn = driver.find_element_by_id("newText")
         if new_text_btn.is_displayed():
           new_text_btn.click()
         else:
