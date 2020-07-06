@@ -73,13 +73,22 @@ class Textnow:
 
     login_btn = driver.find_element_by_xpath("//button[@type='submit']")
     login_btn.click()
+    driver.implicitly_wait(30)
 
+    try:
+        driver.get("https://www.textnow.com/messaging")
+    except:
+        pass
+    #强制等待8s,主要是等待reCaptcha加载
+    time.sleep(8)
+    
+    # 分辨率 1920*1080
+    driver.set_window_size(1920,1080)
+    time.sleep(3)    
     #显性等待，每隔3s检查一下条件是否成立
     try:
       #WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, "//input[@class='form_button']")))
       WebDriverWait(driver, 30).until(EC.visibility_of_element_located((By.XPATH, "//button[@id='newText']")))
-      new_text_btn = driver.find_element_by_xpath("//button[@id='newText']")
-      new_text_btn.click()
     except:
       print ('登陆发生异常。')
       info = sys.exc_info()
