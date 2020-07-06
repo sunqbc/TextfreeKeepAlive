@@ -63,7 +63,17 @@ jobs:
    #     HOSTLOC_USERNAME: ${{ secrets.HOSTLOC_USERNAME }}
    #     HOSTLOC_PASSWORD: ${{ secrets.HOSTLOC_PASSWORD }}
    #   run: python scripts/hostloc/hostloc_get_points.py
-    
+     
+    # TextNFree保号任务
+    - name: textfree protect number
+      env:
+        TEXTNOW_USERNAME: ${{ secrets.TEXTNOW_USERNAME }}
+        TEXTNOW_PASSWORD: ${{ secrets.TEXTNOW_PASSWORD }}
+        TEXTNOW_NUMBER: ${{ secrets.TEXTNOW_NUMBER }}
+        TEXTNOW_MSG: ${{ secrets.TEXTNOW_MSG }}
+      run: |
+        python scripts/_textfree.py
+            
     # TextNow保号任务
     - name: textnow protect number
       env:
