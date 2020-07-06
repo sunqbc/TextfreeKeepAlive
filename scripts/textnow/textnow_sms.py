@@ -84,7 +84,7 @@ class Textnow:
     print(u'登录成功')
     # 隐性等待,最长等待30秒
     driver.implicitly_wait(30)
-    print(driver.service_url)
+    print(driver.getCurrentUrl())
     
     #toast = driver.find_element_by_css_selector("#recent-header .toast-container")
     #if toast:
