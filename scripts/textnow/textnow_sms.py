@@ -59,7 +59,7 @@ class Textnow:
     except:
         pass
     #强制等待8s,主要是等待reCaptcha加载
-    time.sleep(8)
+    time.sleep(20)
     
     # 分辨率 1920*1080
     driver.set_window_size(1920,1080)
