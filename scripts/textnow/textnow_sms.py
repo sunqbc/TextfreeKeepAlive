@@ -81,10 +81,14 @@ class Textnow:
     except:
       pass
 
-    print(u'登录成功')
+    if (driver.current_url=='https://www.textnow.com/messaging')
+       print(u'登录成功')
+     else
+       print(u'登录失败')
+       sys.exit()
     # 隐性等待,最长等待30秒
     driver.implicitly_wait(30)
-    print(driver.current_url)
+
     
     toast = driver.find_element_by_css_selector("#recent-header .toast-container")
     if toast:
