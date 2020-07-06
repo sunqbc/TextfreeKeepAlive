@@ -84,25 +84,25 @@ class textfree:
       pass
 
     if driver.current_url != self.url :
-       print(u'登录成功')
+       print(u'登录成功'+driver.current_url)
     else:
        print(u'登录失败')
-    sys.exit()
+       sys.exit()
     # 隐性等待,最长等待30秒
     driver.implicitly_wait(30)
 
     
-    toast = driver.find_element_by_css_selector("#recent-header .toast-container")
-    if toast:
-      driver.execute_script("arguments[0].remove();", toast)
-      time.sleep(1)
-    notification = driver.find_element_by_css_selector(".notification-priming-modal")
-    if notification:
-      driver.execute_script("arguments[0].remove();", notification)
-      time.sleep(1)
-    driver.execute_script("$('#recent-header .toast-container').remove();")
-    driver.execute_script("$('.notification-priming-modal').remove();")
-    driver.execute_script("$('.modal').remove();")
+    #toast = driver.find_element_by_css_selector("#recent-header .toast-container")
+    #if toast:
+    #  driver.execute_script("arguments[0].remove();", toast)
+    #  time.sleep(1)
+    #notification = driver.find_element_by_css_selector(".notification-priming-modal")
+    #if notification:
+    #  driver.execute_script("arguments[0].remove();", notification)
+    #  time.sleep(1)
+    #driver.execute_script("$('#recent-header .toast-container').remove();")
+    #driver.execute_script("$('.notification-priming-modal').remove();")
+    #driver.execute_script("$('.modal').remove();")
     time.sleep(2)
     
     for phone in self.PHONE_NUMBER.split(','):
@@ -111,7 +111,7 @@ class textfree:
         print (u'开始给%s发短信' % phone)
         
         #点击 新建短信按钮
-        new_text_btn = driver.find_element_by_id("contactInput")
+        new_text_btn = driver.find_element_by_id("startNewConversationButton")
         if new_text_btn.is_displayed():
           new_text_btn.click()
         else:
@@ -119,11 +119,11 @@ class textfree:
           if new_text_btn.is_displayed():
             new_text_btn.click()
           else:
-            driver.execute_script("$(arguments[0]).click()", "#contactInput")
+            driver.execute_script("$(arguments[0]).click()", "#startNewConversationButton")
         time.sleep(2)
 
         #输入：短信内容
-        text_field = driver.find_element_by_id("text-input")
+        text_field = driver.find_element_by_id("editContent")
         if text_field.is_displayed():
           text_field.click()
           text_field.send_keys(self.MESSAGE)
@@ -133,11 +133,11 @@ class textfree:
             text_field.click()
             text_field.send_keys(self.MESSAGE)
           else:
-            driver.execute_script("$(arguments[0]).val('arguments[1]')", "#text-input", self.MESSAGE)
+            driver.execute_script("$(arguments[0]).val('arguments[1]')", "#editContent", self.MESSAGE)
         time.sleep(2)
         
         #输入号码
-        number_field = driver.find_element_by_class_name("newConversationTextField")
+        number_field = driver.find_element_by_class_name("contactInput")
         if number_field.is_displayed():
           number_field.send_keys(phone)
         else:
@@ -145,11 +145,11 @@ class textfree:
           if number_field.is_displayed():
             number_field.send_keys(phone)
           else:
-            driver.execute_script("$(arguments[0]).val('arguments[1]')", ".newConversationTextField", phone)
+            driver.execute_script("$(arguments[0]).val('arguments[1]')", ".contactInput", phone)
         time.sleep(10)
 
         #点击短信内容
-        text_field = driver.find_element_by_id("text-input")
+        text_field = driver.find_element_by_id("editContent")
         if text_field.is_displayed():
           text_field.click()
         else:
@@ -157,11 +157,11 @@ class textfree:
           if text_field.is_displayed():
             text_field.click()
           else:
-            driver.execute_script("$(arguments[0]).focus()", "#text-input")
+            driver.execute_script("$(arguments[0]).focus()", "#editContent")
         time.sleep(5)
         
         #点击发送按钮
-        send_btn = driver.find_element_by_id("send_button")
+        send_btn = driver.find_element_by_id("sendButton")
         if send_btn.is_displayed():
           send_btn.click()
         else:
@@ -169,8 +169,8 @@ class textfree:
           if send_btn.is_displayed():
             send_btn.click()
           else:
-            driver.execute_script("$(arguments[0]).click()", "#send_button")
-            driver.execute_script("setTimeout($(arguments[0]).click,2000)", "#send_button")
+            driver.execute_script("$(arguments[0]).click()", "#sendButton")
+            driver.execute_script("setTimeout($(arguments[0]).click,2000)", "#sendButton")
         time.sleep(5)
         
         #执行页面刷新
@@ -185,37 +185,7 @@ class textfree:
         #except:
         #    pass
         
-        #点击退出按钮
-        send_btn = driver.find_element_by_css_selector("#logout .elem-img")
-        if send_btn.is_displayed():
-          send_btn.click()
-        else:
-          driver.execute_script("arguments[0].scrollIntoView();", send_btn)
-          if send_btn.is_displayed():
-            send_btn.click()
-          else:
-            driver.execute_script("$(arguments[0]).click()", "#send_button")
-            driver.execute_script("setTimeout($(arguments[0]).click,2000)", "#send_button")
-        time.sleep(5)
-        
-        #点击确认退出按钮
-        send_btn = driver.find_element_by_css_selector(".primary")
-        if send_btn.is_displayed():
-          send_btn.click()
-        else:
-          driver.execute_script("arguments[0].scrollIntoView();", send_btn)
-          if send_btn.is_displayed():
-            send_btn.click()
-          else:
-            driver.execute_script("$(arguments[0]).click()", "#send_button")
-            driver.execute_script("setTimeout($(arguments[0]).click,2000)", "#send_button")
-        time.sleep(20)
-        
-        if driver.current_url == "https://www.textnow.com/" :
-          print(u'退出成功')
-        else:
-          print(u'退出失败')      
-            
+
       except:
         print (u'给%s发短信时发生异常：' % phone)
         info = sys.exc_info()
