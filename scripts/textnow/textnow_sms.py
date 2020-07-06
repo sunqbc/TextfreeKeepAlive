@@ -86,9 +86,9 @@ class Textnow:
     driver.implicitly_wait(30)
 
     
-    toast = driver.find_element_by_css_selector("#recent-header .toast-container")
-    if toast:
-      driver.execute_script("arguments[0].remove();", toast)
+    #toast = driver.find_element_by_css_selector("#recent-header .toast-container")
+    #if toast:
+    #  driver.execute_script("arguments[0].remove();", toast)
     time.sleep(1)
     notification = driver.find_element_by_css_selector(".notification-priming-modal")
     if notification:
