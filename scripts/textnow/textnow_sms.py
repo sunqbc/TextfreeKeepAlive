@@ -124,12 +124,12 @@ class Textnow:
         text_field = driver.find_element_by_id("text-input")
         if text_field.is_displayed():
           text_field.click()
-          text_field.send_keys(self.MESSAGE)
+          text_field.send_keys(self.MESSAGE + datetime.date.today())
         else:
           driver.execute_script("arguments[0].scrollIntoView();", text_field)
           if text_field.is_displayed():
             text_field.click()
-            text_field.send_keys(self.MESSAGE)
+            text_field.send_keys(self.MESSAGE + datetime.date.today())
           else:
             driver.execute_script("$(arguments[0]).val('arguments[1]')", "#text-input", self.MESSAGE)
         time.sleep(2)
