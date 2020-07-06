@@ -83,20 +83,20 @@ class Textnow:
 
     print(u'登录成功')
     # 隐性等待,最长等待30秒
-    driver.implicitly_wait(90)
+    driver.implicitly_wait(30)
 
 
-    toast = driver.find_element_by_css_selector("#recent-header .toast-container")
-    if toast:
-      driver.execute_script("arguments[0].remove();", toast)
-    time.sleep(1)
-    notification = driver.find_element_by_css_selector(".notification-priming-modal")
-    if notification:
-      driver.execute_script("arguments[0].remove();", notification)
-    time.sleep(1)
-    driver.execute_script("$('#recent-header .toast-container').remove();")
-    driver.execute_script("$('.notification-priming-modal').remove();")
-    driver.execute_script("$('.modal').remove();")
+    #toast = driver.find_element_by_css_selector("#recent-header .toast-container")
+    #if toast:
+    #  driver.execute_script("arguments[0].remove();", toast)
+    #time.sleep(1)
+    #notification = driver.find_element_by_css_selector(".notification-priming-modal")
+    #if notification:
+    #  driver.execute_script("arguments[0].remove();", notification)
+    #time.sleep(1)
+    #driver.execute_script("$('#recent-header .toast-container').remove();")
+    #driver.execute_script("$('.notification-priming-modal').remove();")
+    #driver.execute_script("$('.modal').remove();")
     time.sleep(2)
     
     for phone in self.PHONE_NUMBER.split(','):
@@ -105,7 +105,7 @@ class Textnow:
         print (u'开始给%s发短信' % phone)
         
         #点击 新建短信按钮
-        new_text_btn = driver.find_element_by_id("newText")
+        new_text_btn = driver.find_element_by_xpath("//button[@id='newText']")
         if new_text_btn.is_displayed():
           new_text_btn.click()
         else:
