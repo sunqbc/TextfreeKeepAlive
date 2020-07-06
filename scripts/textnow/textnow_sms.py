@@ -81,7 +81,7 @@ class Textnow:
     except:
       pass
 
-    if driver.current_url=='https://www.textnow.com/messaging'：
+    if driver.current_url == "https://www.textnow.com/messaging" ：
        print(u'登录成功')
     else：
        print(u'登录失败')
