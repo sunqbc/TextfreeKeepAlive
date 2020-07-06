@@ -152,7 +152,7 @@ class textfree:
         time.sleep(2)
         
         #输入号码
-        number_field = driver.find_element_by_class_name("contactInput")
+        number_field = driver.find_element_by_id("contactInput")
         if number_field.is_displayed():
           number_field.send_keys(phone)
         else:
