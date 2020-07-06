@@ -122,17 +122,7 @@ class textfree:
             driver.execute_script("$(arguments[0]).click()", "#SyncContactsXDismissPopup")
         time.sleep(2)
         
-        #点击 新建短信按钮
-        new_text_btn = driver.find_element_by_id("cancelBtn")
-        if new_text_btn.is_displayed():
-          new_text_btn.click()
-        else:
-          driver.execute_script("arguments[0].scrollIntoView();", new_text_btn)
-          if new_text_btn.is_displayed():
-            new_text_btn.click()
-          else:
-            driver.execute_script("$(arguments[0]).click()", "#cancelBtn")
-        time.sleep(2)        
+   
         
         #点击 新建短信按钮
         new_text_btn = driver.find_element_by_id("startNewConversationButton")
