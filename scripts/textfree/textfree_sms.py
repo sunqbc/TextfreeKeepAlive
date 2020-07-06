@@ -160,7 +160,7 @@ class textfree:
           if number_field.is_displayed():
             number_field.send_keys(phone)
           else:
-            driver.execute_script("$(arguments[0]).val('arguments[1]')", ".contactInput", phone)
+            driver.execute_script("$(arguments[0]).val('arguments[1]')", "contactInput", phone)
         time.sleep(10)
 
         #点击短信内容
