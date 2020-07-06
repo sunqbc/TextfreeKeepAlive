@@ -182,6 +182,37 @@ class Textnow:
         #  print (u'刷新页面完成')
         #except:
         #    pass
+        
+        #点击退出按钮
+        send_btn = driver.find_element_by_css_selector("#logout .elem-img")
+        if send_btn.is_displayed():
+          send_btn.click()
+        else:
+          driver.execute_script("arguments[0].scrollIntoView();", send_btn)
+          if send_btn.is_displayed():
+            send_btn.click()
+          else:
+            driver.execute_script("$(arguments[0]).click()", "#send_button")
+            driver.execute_script("setTimeout($(arguments[0]).click,2000)", "#send_button")
+        time.sleep(5)
+        
+        #点击确认退出按钮
+        send_btn = driver.find_element_by_css_selector(".primary")
+        if send_btn.is_displayed():
+          send_btn.click()
+        else:
+          driver.execute_script("arguments[0].scrollIntoView();", send_btn)
+          if send_btn.is_displayed():
+            send_btn.click()
+          else:
+            driver.execute_script("$(arguments[0]).click()", "#send_button")
+            driver.execute_script("setTimeout($(arguments[0]).click,2000)", "#send_button")
+        time.sleep(20)
+        
+        if driver.current_url == "https://www.textnow.com/" :
+          print(u'退出成功')
+        else:
+          print(u'退出失败')      
             
       except:
         print (u'给%s发短信时发生异常：' % phone)
