@@ -83,7 +83,7 @@ class Textnow:
 
     print(u'登录成功')
     # 隐性等待,最长等待30秒
-    driver.implicitly_wait(30)
+    #driver.implicitly_wait(30)
 
 
     #toast = driver.find_element_by_css_selector("#recent-header .toast-container")
