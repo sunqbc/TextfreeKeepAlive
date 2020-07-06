@@ -136,8 +136,20 @@ class textfree:
             driver.execute_script("$(arguments[0]).click()", "#startNewConversationButton")
         time.sleep(2)
 
+        #点击 新建短信按钮
+        new_text_btn = driver.find_element_by_id("startNewConversationButton")
+        if new_text_btn.is_displayed():
+          new_text_btn.click()
+        else:
+          driver.execute_script("arguments[0].scrollIntoView();", new_text_btn)
+          if new_text_btn.is_displayed():
+            new_text_btn.click()
+          else:
+            driver.execute_script("$(arguments[0]).click()", "#startNewConversationButton")
+        time.sleep(2)
+        
         #输入：短信内容
-        text_field = driver.find_element_by_id("messageForm")
+        text_field = driver.find_element_by_css_selector(".emojionearea-editor")
         if text_field.is_displayed():
           text_field.click()
           text_field.send_keys(self.MESSAGE)
@@ -163,7 +175,7 @@ class textfree:
         time.sleep(10)
 
         #点击短信内容
-        text_field = driver.find_element_by_id("messageForm")
+        text_field = driver.find_element_by_css_selector(".emojionearea-editor")
         if text_field.is_displayed():
           text_field.click()
         else:
