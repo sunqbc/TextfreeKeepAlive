@@ -81,6 +81,12 @@ class Textnow:
       new_text_btn = driver.find_element_by_xpath("//button[@id='newText']")
       new_text_btn.click()
     except:
+      print ('登陆发生异常。')
+      info = sys.exc_info()
+      print(info)
+      print(info[0])
+      print(info[1])
+      time.sleep(2)
       pass
 
     print(u'登录成功')
