@@ -59,7 +59,7 @@ class Textnow:
     except:
         pass
     #强制等待8s,主要是等待reCaptcha加载
-    time.sleep(20)
+    time.sleep(8)
     
     # 分辨率 1920*1080
     driver.set_window_size(1920,1080)
@@ -73,44 +73,27 @@ class Textnow:
 
     login_btn = driver.find_element_by_xpath("//button[@type='submit']")
     login_btn.click()
-    driver.implicitly_wait(30)
 
-    try:
-        driver.get("https://www.textnow.com/messaging")
-    except:
-        pass
-    #强制等待8s,主要是等待reCaptcha加载
-    time.sleep(8)
-    
-    # 分辨率 1920*1080
-    driver.set_window_size(1920,1080)
-    time.sleep(3)    
     #显性等待，每隔3s检查一下条件是否成立
     try:
       #WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, "//input[@class='form_button']")))
-      WebDriverWait(driver, 30).until(EC.visibility_of_element_located((By.XPATH, "//button[@id='newText']")))
+      WebDriverWait(driver, 3).until(EC.visibility_of_element_located((By.XPATH, "//button[@id='newText']")))
     except:
-      print ('登陆发生异常。')
-      info = sys.exc_info()
-      print(info)
-      print(info[0])
-      print(info[1])
-      time.sleep(2)
       pass
 
     print(u'登录成功')
     # 隐性等待,最长等待30秒
     driver.implicitly_wait(30)
-
-
+    print(drive.url)
+    
     #toast = driver.find_element_by_css_selector("#recent-header .toast-container")
     #if toast:
     #  driver.execute_script("arguments[0].remove();", toast)
-    #time.sleep(1)
+    #  time.sleep(1)
     #notification = driver.find_element_by_css_selector(".notification-priming-modal")
     #if notification:
     #  driver.execute_script("arguments[0].remove();", notification)
-    #time.sleep(1)
+    #  time.sleep(1)
     #driver.execute_script("$('#recent-header .toast-container').remove();")
     #driver.execute_script("$('.notification-priming-modal').remove();")
     #driver.execute_script("$('.modal').remove();")
