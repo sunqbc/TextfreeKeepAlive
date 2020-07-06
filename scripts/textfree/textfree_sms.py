@@ -137,7 +137,7 @@ class textfree:
         time.sleep(2)
 
         #输入：短信内容
-        text_field = driver.find_element_by_id("editContent")
+        text_field = driver.find_element_by_id("messageForm")
         if text_field.is_displayed():
           text_field.click()
           text_field.send_keys(self.MESSAGE)
@@ -147,7 +147,7 @@ class textfree:
             text_field.click()
             text_field.send_keys(self.MESSAGE)
           else:
-            driver.execute_script("$(arguments[0]).val('arguments[1]')", "#editContent", self.MESSAGE)
+            driver.execute_script("$(arguments[0]).val('arguments[1]')", "#messageForm", self.MESSAGE)
         time.sleep(2)
         
         #输入号码
@@ -163,7 +163,7 @@ class textfree:
         time.sleep(10)
 
         #点击短信内容
-        text_field = driver.find_element_by_id("editContent")
+        text_field = driver.find_element_by_id("messageForm")
         if text_field.is_displayed():
           text_field.click()
         else:
@@ -171,7 +171,7 @@ class textfree:
           if text_field.is_displayed():
             text_field.click()
           else:
-            driver.execute_script("$(arguments[0]).focus()", "#editContent")
+            driver.execute_script("$(arguments[0]).focus()", "#messageForm")
         time.sleep(5)
         
         #点击发送按钮
