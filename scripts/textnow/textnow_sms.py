@@ -79,11 +79,16 @@ class Textnow:
     #显性等待，每隔3s检查一下条件是否成立
     try:
       #WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, "//input[@class='form_button']")))
-      WebDriverWait(driver, 3).until(EC.visibility_of_element_located((By.XPATH, "//button[@id='newText']")))
+      WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//button[@id='newText']")))
     except:
       pass
 
-    print(u'登录成功')
+
+    if driver.current_url == "https://www.textnow.com/messaging" :
+       print(u'登录成功')
+    else:
+       print(u'登录失败')
+       sys.exit()
     # 隐性等待,最长等待30秒
     driver.implicitly_wait(30)
 
