@@ -61,13 +61,13 @@ class Textnow:
     except:
         pass
     #强制等待8s,主要是等待reCaptcha加载
-    time.sleep(8)
+    time.sleep(20)
     
     # 分辨率 1920*1080
     driver.set_window_size(1920,1080)
-    time.sleep(3)
+    time.sleep(10)
 
-    WebDriverWait(driver, 3).until(EC.visibility_of_element_located((By.XPATH, "//input[@name='username']")))
+    WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, "//input[@name='username']")))
     uname_box = driver.find_element_by_xpath("//input[@name='username']")
     pass_box = driver.find_element_by_xpath("//input[@name='password']")
     uname_box.send_keys(self.TN_USER)
