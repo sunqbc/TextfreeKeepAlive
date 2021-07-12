@@ -120,7 +120,7 @@ class textfree:
             new_text_btn.click()
           else:
             driver.execute_script("$(arguments[0]).click()", "#SyncContactsXDismissPopup")
-        time.sleep(2)
+        time.sleep(10)
         
    
         
@@ -134,7 +134,7 @@ class textfree:
             new_text_btn.click()
           else:
             driver.execute_script("$(arguments[0]).click()", "#startNewConversationButton")
-        time.sleep(2)
+        time.sleep(10)
 
         
         #输入：短信内容
@@ -149,7 +149,7 @@ class textfree:
             text_field.send_keys(self.MESSAGE)
           else:
             driver.execute_script("$(arguments[0]).val('arguments[1]')", "#messageForm", self.MESSAGE)
-        time.sleep(2)
+        time.sleep(10)
         
         #输入号码
         number_field = driver.find_element_by_id("contactInput")
@@ -173,7 +173,7 @@ class textfree:
             text_field.click()
           else:
             driver.execute_script("$(arguments[0]).focus()", "#messageForm")
-        time.sleep(5)
+        time.sleep(10)
         
         #点击发送按钮
         send_btn = driver.find_element_by_id("sendButton")
@@ -186,7 +186,7 @@ class textfree:
           else:
             driver.execute_script("$(arguments[0]).click()", "#sendButton")
             driver.execute_script("setTimeout($(arguments[0]).click,2000)", "#sendButton")
-        time.sleep(5)
+        time.sleep(10)
         
         #执行页面刷新
         #try:
