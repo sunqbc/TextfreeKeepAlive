@@ -56,56 +56,56 @@ class textfree:
     #这两种设置都进行才有效
     #driver.set_page_load_timeout(5)
     #driver.set_script_timeout(5)
-    try:
-        driver.get(self.url)
-    except:
-        pass
-    #强制等待8s,主要是等待reCaptcha加载
-    time.sleep(8)
-    
-    # 分辨率 1920*1080
-    driver.set_window_size(1920,1080)
-    time.sleep(3)
-
-    WebDriverWait(driver, 3).until(EC.visibility_of_element_located((By.XPATH, "//input[@name='username']")))
-    uname_box = driver.find_element_by_xpath("//input[@name='username']")
-    pass_box = driver.find_element_by_xpath("//input[@name='password']")
-    uname_box.send_keys(self.TN_USER)
-    pass_box.send_keys(self.TN_PASS)
-
-    login_btn = driver.find_element_by_xpath("//button[@type='submit']")
-    login_btn.click()
-
-    #显性等待，每隔3s检查一下条件是否成立
-    try:
-      #WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, "//input[@class='form_button']")))
-      WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, "//button[@id='contactInput']")))
-    except:
-      pass
-
-    if driver.current_url != self.url :
-       print(u'登录成功'+driver.current_url)
-    else:
-       print(u'登录失败')
-       sys.exit()
-    # 隐性等待,最长等待30秒
-    driver.implicitly_wait(30)
-
-    
-    #toast = driver.find_element_by_css_selector("#recent-header .toast-container")
-    #if toast:
-    #  driver.execute_script("arguments[0].remove();", toast)
-    #  time.sleep(1)
-    #notification = driver.find_element_by_css_selector(".notification-priming-modal")
-    #if notification:
-    #  driver.execute_script("arguments[0].remove();", notification)
-    #  time.sleep(1)
-    #driver.execute_script("$('#recent-header .toast-container').remove();")
-    #driver.execute_script("$('.notification-priming-modal').remove();")
-    #driver.execute_script("$('.modal').remove();")
-    time.sleep(2)
-    
     for phone in self.PHONE_NUMBER.split(','):  #可直接一次发送多个号码
+      try:
+          driver.get(self.url)
+      except:
+          pass
+      #强制等待8s,主要是等待reCaptcha加载
+      time.sleep(8)
+
+      # 分辨率 1920*1080
+      driver.set_window_size(1920,1080)
+      time.sleep(3)
+
+      WebDriverWait(driver, 3).until(EC.visibility_of_element_located((By.XPATH, "//input[@name='username']")))
+      uname_box = driver.find_element_by_xpath("//input[@name='username']")
+      pass_box = driver.find_element_by_xpath("//input[@name='password']")
+      uname_box.send_keys(self.TN_USER)
+      pass_box.send_keys(self.TN_PASS)
+
+      login_btn = driver.find_element_by_xpath("//button[@type='submit']")
+      login_btn.click()
+
+      #显性等待，每隔3s检查一下条件是否成立
+      try:
+        #WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, "//input[@class='form_button']")))
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, "//button[@id='contactInput']")))
+      except:
+        pass
+
+      if driver.current_url != self.url :
+         print(u'登录成功'+driver.current_url)
+      else:
+         print(u'登录失败')
+         sys.exit()
+      # 隐性等待,最长等待30秒
+      driver.implicitly_wait(30)
+
+
+      #toast = driver.find_element_by_css_selector("#recent-header .toast-container")
+      #if toast:
+      #  driver.execute_script("arguments[0].remove();", toast)
+      #  time.sleep(1)
+      #notification = driver.find_element_by_css_selector(".notification-priming-modal")
+      #if notification:
+      #  driver.execute_script("arguments[0].remove();", notification)
+      #  time.sleep(1)
+      #driver.execute_script("$('#recent-header .toast-container').remove();")
+      #driver.execute_script("$('.notification-priming-modal').remove();")
+      #driver.execute_script("$('.modal').remove();")
+      time.sleep(2)
+
       try:
           
         print (u'开始给%s发短信' % phone)
