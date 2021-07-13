@@ -23,40 +23,39 @@ class textfree:
     self.url = "https://messages.textfree.us/login"
 
   def send_text(self):
-
-    #profile = webdriver.FirefoxProfile()
-    #proxy = '127.0.0.1:10808'
-    #ip, port = proxy.split(":")
-    #port = int(port)
-    ## 不使用代理的协议，注释掉对应的选项即可
-    #settings = {
-    #  'network.proxy.type': 1,
-    #  'network.proxy.http': ip,
-    #  'network.proxy.http_port': port,
-    #  'network.proxy.ssl': ip,  # https的网站,
-    #  'network.proxy.ssl_port': port,
-    #}
-    #
-    ## 更新配置文件
-    #for key, value in settings.items():
-    #    profile.set_preference(key, value)
-    #profile.update_preferences()
-    #
-    options = webdriver.FirefoxOptions()
-    options.add_argument('-headless')  # 无头参数
-
-    #https://sites.google.com/a/chromium.org/chromedriver/home
-    #driver = webdriver.Chrome(r'C:/Python27/Scripts/chromedriver')
-
-    #https://github.com/mozilla/geckodriver/releases
-    driver = webdriver.Firefox(executable_path='geckodriver', options=options)
-    #driver = webdriver.Firefox(firefox_profile=profile, options=options)
-    #driver = webdriver.Firefox(proxy = proxy)
-    
-    #这两种设置都进行才有效
-    #driver.set_page_load_timeout(5)
-    #driver.set_script_timeout(5)
     for phone in self.PHONE_NUMBER.split(','):  #可直接一次发送多个号码
+      #profile = webdriver.FirefoxProfile()
+      #proxy = '127.0.0.1:10808'
+      #ip, port = proxy.split(":")
+      #port = int(port)
+      ## 不使用代理的协议，注释掉对应的选项即可
+      #settings = {
+      #  'network.proxy.type': 1,
+      #  'network.proxy.http': ip,
+      #  'network.proxy.http_port': port,
+      #  'network.proxy.ssl': ip,  # https的网站,
+      #  'network.proxy.ssl_port': port,
+      #}
+      #
+      ## 更新配置文件
+      #for key, value in settings.items():
+      #    profile.set_preference(key, value)
+      #profile.update_preferences()
+      #
+      options = webdriver.FirefoxOptions()
+      options.add_argument('-headless')  # 无头参数
+
+      #https://sites.google.com/a/chromium.org/chromedriver/home
+      #driver = webdriver.Chrome(r'C:/Python27/Scripts/chromedriver')
+
+      #https://github.com/mozilla/geckodriver/releases
+      driver = webdriver.Firefox(executable_path='geckodriver', options=options)
+      #driver = webdriver.Firefox(firefox_profile=profile, options=options)
+      #driver = webdriver.Firefox(proxy = proxy)
+
+      #这两种设置都进行才有效
+      #driver.set_page_load_timeout(5)
+      #driver.set_script_timeout(5)
       try:
           driver.get(self.url)
       except:
@@ -210,8 +209,7 @@ class textfree:
         time.sleep(2)
         pass
       continue
-      
+  
+      driver.close()
     print (u'处理完毕---end')
-    
-    driver.close()
     
