@@ -105,7 +105,7 @@ class textfree:
     #driver.execute_script("$('.modal').remove();")
     time.sleep(2)
     
-    for phone in self.PHONE_NUMBER.split('!'):  可直接一次发送多个号码
+    for phone in self.PHONE_NUMBER.split('!'):  #可直接一次发送多个号码
       try:
           
         print (u'开始给%s发短信' % phone)
